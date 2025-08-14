@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Hub — داشبورد رایگان ابزارهای هوش مصنوعی</title>
+  <meta name="description" content="داشبورد یکجا برای ابزارهای رایگان/نیمه‌رایگان هوش مصنوعی: چت، تصویر، ویدیو، صدا و اجرای لوکال. ساخته شده توسط امیر." />
+  <meta property="og:title" content="AI Hub — داشبورد رایگان ابزارهای هوش مصنوعی" />
+  <meta property="og:description" content="همه ابزارهای AI در یک صفحه؛ چت، تصویر، ویدیو، صدا و مدل‌های آفلاین. لینک مستقیم هر ابزار.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: Vazirmatn, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    .glass { background: rgba(255,255,255,0.65); backdrop-filter: blur(8px); }
+    .tag { border: 1px solid rgb(226 232 240); }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-sky-50 via-white to-indigo-50 min-h-screen">
+  <!-- Header -->
+  <header class="relative">
+    <div class="absolute inset-0 bg-[radial-gradient(1000px_400px_at_80%_-10%,rgba(59,130,246,0.25),transparent)] pointer-events-none"></div>
+    <div class="max-w-6xl mx-auto px-4 pt-10 pb-6">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-2xl md:text-4xl font-extrabold tracking-tight text-slate-800">
+            AI Hub – داشبورد ابزارهای هوش مصنوعی
+          </h1>
+          <p class="text-slate-600 mt-2">همهٔ ابزارهای کاربردی در یک صفحه؛ ساخت تصویر، ویدیو، چت، صدا و اجرای لوکال. ساخته‌شده توسط <span id="creator" class="font-semibold">@texarohub</span>.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <a id="igLinkTop" href="https://www.instagram.com/texarohub" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-2xl px-4 py-2 bg-sky-600 text-white hover:bg-sky-700 transition">
+            دنبال کردن پیج
+            <span class="text-white/90">↗</span>
+          </a>
+          <button id="shareBtn" class="rounded-2xl px-4 py-2 border border-slate-200 hover:bg-white transition">اشتراک‌گذاری</button>
+        </div>
+      </div>
+      <div class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div class="md:col-span-2">
+          <div class="relative">
+            <input id="search" class="w-full rounded-2xl px-4 py-3 pr-11 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500" placeholder="جستجو بین ابزارها (مثلاً: لوگو، ترجمه، تحقیق)" />
+            <div class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">🔎</div>
+          </div>
+        </div>
+        <div class="flex items-center justify-end gap-2">
+          <button id="resetBtn" class="rounded-2xl px-4 py-3 border border-slate-200 hover:bg-white transition">پاک‌سازی فیلتر</button>
+          <a href="https://github.com/new" target="_blank" rel="noopener" class="rounded-2xl px-4 py-3 bg-black text-white hover:bg-slate-800 transition">هاست در GitHub Pages</a>
+        </div>
+      </div>
+      <div id="tabs" class="mt-4 flex gap-2 overflow-x-auto scrollbar-hide">
+        <!-- Tabs rendered here -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="max-w-6xl mx-auto px-4 pb-24">
+    <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+    <section class="mt-8 glass rounded-2xl p-5 border border-slate-200">
+      <h2 class="text-lg font-bold mb-3">نکات استفادهٔ کم‌هزینه/رایگان</h2>
+      <ul class="list-disc pr-6 space-y-2 text-slate-700">
+        <li>برای متن داخل تصویر: از <b>Ideogram</b> استفاده کن. برای فتورئال: <b>Leonardo</b>.</li>
+        <li>برای ویدیو: <b>Runway</b> هر ماه معمولاً کرِدیت رایگان می‌دهد؛ اول استوری‌بورد ساده بساز.</li>
+        <li>برای تحقیق: پرسش‌ها را در <b>Perplexity</b> مرحله‌ای و با کلیدواژه‌های دقیق بنویس.</li>
+        <li>برای لوکال: اگر GPU نداری، مدل‌های کوچک Llama/Mistral را در <b>LM Studio</b> اجرا کن.</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Bottom CTA -->
+  <footer class="fixed bottom-0 inset-x-0">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="glass border border-slate-200 rounded-2xl px-4 py-3 mb-3 flex flex-col md:flex-row items-center justify-between gap-2">
+        <div class="text-slate-700 text-sm">
+          ابزار جدید می‌شناسی؟ <b>درخواست اضافه‌کردن</b> بده یا فیدبک بنویس.
+        </div>
+        <div class="flex items-center gap-2">
+          <a id="igDM" href="https://www.instagram.com/texarohub" target="_blank" rel="noopener"
+            class="rounded-2xl px-4 py-2 bg-sky-600 text-white hover:bg-sky-700 transition">ارسال درخواست در اینستاگرام</a>
+          <button id="copySiteBtn" class="rounded-2xl px-4 py-2 border border-slate-200 hover:bg-white transition">کپی لینک داشبورد</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // --- Config ---
+    const INSTAGRAM_HANDLE = "texarohub"; // ← اگر نیاز بود تغییر بده
+    const SITE_TITLE = "AI Hub — داشبورد رایگان ابزارهای هوش مصنوعی";
+
+    document.getElementById("igLinkTop").href = "https://www.instagram.com/" + INSTAGRAM_HANDLE;
+    document.getElementById("igDM").href = "https://www.instagram.com/" + INSTAGRAM_HANDLE;
+
+    // --- Data ---
+    const TOOLS = [
+      { name: "Perplexity AI", url: "https://www.perplexity.ai/", category: "chat", free: "محدود روزانه", desc: "پرس‌وجوی هوشمند، تحقیق و نگارش؛ دسترسی به مدل‌های قوی با محدودیت روزانه", tags: ["تحقیق","نوشتن","جستجو"] },
+      { name: "Poe AI", url: "https://poe.com/", category: "chat", free: "محدود پیام", desc: "چند مدل در یک جا: Claude، Llama، GPT (نسخه رایگان با محدودیت پیام)", tags: ["چت","چندمدلی"] },
+      { name: "ChatGPT (Free)", url: "https://chat.openai.com/", category: "chat", free: "رایگان پایه", desc: "نسخه رایگان برای مکالمه، کدنویسی و تولید متن", tags: ["چت","کدنویسی"] },
+      { name: "You.com AI", url: "https://you.com/", category: "chat", free: "رایگان با محدودیت", desc: "جستجو + نگارش + کدنویسی در یک موتور هوشمند", tags: ["جستجو","کدنویسی"] },
+      { name: "Leonardo AI", url: "https://leonardo.ai/", category: "image", free: "امتیاز روزانه", desc: "تولید تصویر باکیفیت؛ مناسب پوستر، کاور و رفرنس هنری", tags: ["تصویر","فتورئال"] },
+      { name: "BlueWillow", url: "https://www.bluewillow.ai/", category: "image", free: "رایگان", desc: "جایگزین رایگانِ شبیه Midjourney (کیفیت متوسط رو به خوب)", tags: ["تصویر","آزمون سریع"] },
+      { name: "Ideogram", url: "https://ideogram.ai/", category: "image", free: "رایگان پایه", desc: "تایپوگرافی و لوگو/پوستر با متن واضح داخل تصویر", tags: ["لوگو","تایپوگرافی"] },
+      { name: "Canva AI", url: "https://www.canva.com/", category: "image", free: "رایگان پایه", desc: "ترکیب طراحی + تولید تصویر/ویدیو/متن؛ مناسب تولید محتوا", tags: ["طراحی","ریلز"] },
+      { name: "Runway ML", url: "https://runwayml.com/", category: "video", free: "ثانیه رایگان ماهانه", desc: "تبدیل متن به ویدیو، ویرایش و حذف پس‌زمینه؛ کرِدیت رایگان ماهانه", tags: ["ویدیو","gen"] },
+      { name: "Pika", url: "https://pika.art/", category: "video", free: "رایگان با محدودیت", desc: "ساخت ویدیو هوش مصنوعی با رابط ساده و خروجی‌های خلاقانه", tags: ["ویدیو","موشن"] },
+      { name: "ElevenLabs", url: "https://elevenlabs.io/", category: "audio", free: "۱۰هزار کاراکتر/ماه", desc: "تبدیل متن به گفتار طبیعی (TTS)؛ مناسب نریشن فارسی/انگلیسی", tags: ["صدا","tts"] },
+      { name: "LM Studio", url: "https://lmstudio.ai/", category: "local", free: "کاملاً رایگان", desc: "اجرای مدل‌های رایگان روی کامپیوتر شخصی؛ بدون نیاز به اینترنت", tags: ["لوکال","llama"] },
+      { name: "Ollama", url: "https://ollama.com/", category: "local", free: "کاملاً رایگان", desc: "دانلود و اجرای مدل‌های اوپن‌سورس با یک فرمان ساده", tags: ["لوکال","mistral"] },
+    ];
+
+    const CATS = [
+      { key: "all", label: "همه" },
+      { key: "chat", label: "چت/تحقیق" },
+      { key: "image", label: "تصویر" },
+      { key: "video", label: "ویدیو" },
+      { key: "audio", label: "صدا" },
+      { key: "local", label: "لوکال (آفلاین)" },
+    ];
+
+    // --- Elements ---
+    const $grid = document.getElementById("grid");
+    const $tabs = document.getElementById("tabs");
+    const $search = document.getElementById("search");
+    const $reset = document.getElementById("resetBtn");
+    const $copySiteBtn = document.getElementById("copySiteBtn");
+    const $shareBtn = document.getElementById("shareBtn");
+
+    let activeCat = "all";
+    let query = "";
+
+    // Render tabs
+    CATS.forEach(c => {
+      const btn = document.createElement("button");
+      btn.textContent = c.label;
+      btn.dataset.key = c.key;
+      btn.className = "rounded-xl px-4 py-2 border border-slate-200 bg-white hover:bg-slate-50 transition";
+      btn.addEventListener("click", () => {
+        activeCat = c.key;
+        render();
+        [...$tabs.children].forEach(el => el.classList.remove("ring-2","ring-sky-400"));
+        btn.classList.add("ring-2","ring-sky-400");
+      });
+      $tabs.appendChild(btn);
+    });
+    // default active
+    $tabs.children[0].classList.add("ring-2","ring-sky-400");
+
+    // Render cards
+    function render(){
+      const q = query.trim().toLowerCase();
+      const filtered = TOOLS.filter(t => (activeCat === "all" || t.category === activeCat) &&
+        (q === "" || [t.name, t.desc, t.tags.join(" ")].join(" ").toLowerCase().includes(q)));
+      $grid.innerHTML = "";
+      if(filtered.length === 0){
+        const empty = document.createElement("div");
+        empty.className = "col-span-full glass border border-slate-200 rounded-2xl p-8 text-center text-slate-700";
+        empty.textContent = `نتیجه‌ای برای «${query}» پیدا نشد. کلیدواژه را ساده‌تر کن یا دستهٔ دیگری را انتخاب کن.`;
+        $grid.appendChild(empty);
+        return;
+      }
+      filtered.forEach(t => {
+        const card = document.createElement("div");
+        card.className = "rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition p-4 flex flex-col";
+        card.innerHTML = `
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="text-base font-bold text-slate-800">${t.name}</h3>
+            <span class="text-xs px-2 py-1 rounded-xl bg-slate-100 text-slate-700">${t.free}</span>
+          </div>
+          <p class="text-sm text-slate-600 mt-2 min-h-[48px]">${t.desc}</p>
+          <div class="flex flex-wrap gap-1 mt-3">
+            ${t.tags.map(tag => `<span class="tag rounded-xl text-xs px-2 py-1 text-slate-600">#${tag}</span>`).join("")}
+          </div>
+          <div class="mt-4 flex items-center gap-2">
+            <a href="${t.url}" target="_blank" rel="noopener" class="w-full text-center rounded-2xl px-4 py-2 bg-sky-600 text-white hover:bg-sky-700 transition">باز کردن</a>
+            <button class="rounded-2xl px-3 py-2 border border-slate-200 hover:bg-white transition copyBtn" data-url="${t.url}">کپی لینک</button>
+          </div>
+        `;
+        $grid.appendChild(card);
+      });
+
+      // Bind copy buttons
+      document.querySelectorAll(".copyBtn").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(btn.dataset.url);
+            btn.textContent = "کپی شد ✓";
+            setTimeout(() => btn.textContent = "کپی لینک", 1200);
+          } catch (e) { alert("مرورگر اجازهٔ کپی نداد."); }
+        });
+      });
+    }
+    render();
+
+    // Search & Reset
+    $search.addEventListener("input", (e) => { query = e.target.value; render(); });
+    $reset.addEventListener("click", () => {
+      query = ""; $search.value = "";
+      activeCat = "all";
+      [...$tabs.children].forEach(el => el.classList.remove("ring-2","ring-sky-400"));
+      $tabs.children[0].classList.add("ring-2","ring-sky-400");
+      render();
+    });
+
+    // Copy site URL
+    $copySiteBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(location.href);
+        $copySiteBtn.textContent = "لینک کپی شد ✓";
+        setTimeout(() => $copySiteBtn.textContent = "کپی لینک داشبورد", 1200);
+      } catch (e) { alert("مرورگر اجازهٔ کپی نداد."); }
+    });
+
+    // Web Share
+    $shareBtn.addEventListener("click", async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: SITE_TITLE, text: "AI Hub — داشبورد ابزارهای هوش مصنوعی", url: location.href });
+        } catch {}
+      } else {
+        alert("مرورگر شما اشتراک‌گذاری وب را پشتیبانی نمی‌کند. از دکمهٔ کپی لینک استفاده کنید.");
+      }
+    });
+  </script>
+</body>
+</html>
